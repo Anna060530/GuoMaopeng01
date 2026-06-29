@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>極東數位木作工程</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: 'Noto Serif TC', 'Noto Sans TC', serif; background: #fff; color: #000; overflow-x: hidden; }
@@ -69,7 +71,7 @@
     margin-bottom: 1.6em;
   }
 
-  /* ── ABOUT (數位木作服務一條龍) ── */
+  /* ── ABOUT ── */
   .about { background: #fff; }
   .about-body {
     display: grid;
@@ -101,9 +103,7 @@
 
   /* ── CNC 切割 ── */
   .cnc-section { background: #fff; }
-  .cnc-header {
-    max-width: 1200px; margin: 0 auto 40px;
-  }
+  .cnc-header { max-width: 1200px; margin: 0 auto 40px; }
   .cnc-header h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 900; letter-spacing: .12em; margin-bottom: 1em; }
   .cnc-bullets { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 48px; margin-bottom: 40px; }
   .cnc-bullet h3 { font-size: 1.05rem; font-weight: 900; letter-spacing: .1em; margin-bottom: .35em; }
@@ -115,44 +115,106 @@
     max-width: 1200px;
     margin: 0 auto;
   }
-  .cnc-grid img {
-    width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 3px;
-    display: block;
-  }
-  .cnc-grid img.tall { aspect-ratio: 3/4; }
+  .cnc-grid img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 3px; display: block; }
 
-  /* ── 代客製圖 ── */
+  /* ── 代客製圖、拆圖 ── */
   .drawing-section { background: #fff; }
   .drawing-body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 40px 56px;
-    max-width: 1200px; margin: 0 auto;
+    max-width: 1200px;
+    margin: 0 auto;
     align-items: start;
   }
-  .drawing-text { display: flex; flex-direction: column; gap: 32px; }
-  .drawing-item h3 { font-size: 1.05rem; font-weight: 900; letter-spacing: .1em; margin-bottom: .35em; border-bottom: 1px solid #ccc; padding-bottom: .3em; }
+  .drawing-text { display: flex; flex-direction: column; gap: 0; }
+  .drawing-text h2 {
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 900;
+    letter-spacing: .12em;
+    margin-bottom: 1em;
+  }
+  .drawing-item { padding: 18px 0; }
+  .drawing-item h3 {
+    font-size: 1.05rem;
+    font-weight: 900;
+    letter-spacing: .1em;
+    margin-bottom: .4em;
+  }
   .drawing-item p { font-size: .9rem; line-height: 1.85; color: #444; letter-spacing: .05em; }
-  .drawing-imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-  .drawing-imgs img { width: 100%; object-fit: cover; border-radius: 3px; }
-  .drawing-imgs .wide { grid-column: 1 / -1; }
+  .drawing-divider { border: none; border-top: 1px solid #ccc; }
+
+  /* 右側圖片欄：大圖 + 下方三格 */
+  .drawing-imgs-col { display: flex; flex-direction: column; gap: 8px; }
+  .drawing-imgs-col .main-img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border-radius: 4px;
+    display: block;
+  }
+  .drawing-imgs-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 8px;
+  }
+  .drawing-imgs-row img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border-radius: 3px;
+    display: block;
+  }
+  .drawing-imgs-row img.wide {
+    grid-column: 1 / -1;
+    aspect-ratio: 16/7;
+  }
 
   /* ── 骨架設計 ── */
   .frame-section { background: #fff; }
+  .frame-inner { max-width: 1200px; margin: 0 auto; }
+  .frame-inner h2 {
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 900;
+    letter-spacing: .12em;
+    margin-bottom: 1em;
+  }
   .frame-body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 40px 56px;
-    max-width: 1200px; margin: 0 auto;
     align-items: start;
   }
-  .frame-text { display: flex; flex-direction: column; gap: 32px; }
-  .frame-item h3 { font-size: 1.05rem; font-weight: 900; letter-spacing: .1em; margin-bottom: .35em; }
+  /* 左欄：文字 + 4小圖 */
+  .frame-left { display: flex; flex-direction: column; gap: 0; }
+  .frame-item { padding: 18px 0; }
+  .frame-item h3 { font-size: 1.05rem; font-weight: 900; letter-spacing: .1em; margin-bottom: .4em; }
   .frame-item p { font-size: .9rem; line-height: 1.85; color: #444; letter-spacing: .05em; }
-  .frame-imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-  .frame-imgs img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 3px; }
+  .frame-divider { border: none; border-top: 1px solid #ccc; }
+  .frame-small-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 20px;
+  }
+  .frame-small-grid img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border-radius: 3px;
+    display: block;
+  }
+  /* 右欄：大主圖（橫向） */
+  .frame-right img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border-radius: 4px;
+    display: block;
+  }
 
-  /* ── 聯絡 ── */
+  /* ── 聯絡我們 ── */
   .contact-section {
     position: relative;
     background: url('https://i.ibb.co/R4TNFRPJ/01.png') center/cover no-repeat;
@@ -164,22 +226,77 @@
     background: rgba(255,255,255,.55);
   }
   .contact-inner { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
-  .contact-inner h2 { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 900; letter-spacing: .15em; margin-bottom: .8em; }
-  .brand-block { display: flex; align-items: center; justify-content: center; gap: 24px; margin-bottom: 1.2em; flex-wrap: wrap; }
-  .brand-block img { height: 80px; }
-  .brand-text { text-align: left; }
-  .brand-text .en { font-size: .9rem; letter-spacing: .08em; color: #555; }
-  .brand-text .cn { font-size: 1.6rem; font-weight: 900; letter-spacing: .18em; }
-  .contact-name { font-size: 1.8rem; font-weight: 900; letter-spacing: .2em; margin-bottom: 1.2em; }
-  .contact-icons { display: flex; justify-content: center; gap: 28px; margin-bottom: 1.6em; font-size: 1.6rem; }
-  .contact-icons a { text-decoration: none; color: #333; transition: color .2s; }
-  .contact-icons a:hover { color: #5ac75a; }
-  .contact-info { display: flex; flex-direction: column; gap: .5em; font-size: 1rem; letter-spacing: .06em; font-weight: 700; }
+  .contact-inner > .cta-title {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 900;
+    letter-spacing: .15em;
+    margin-bottom: 1.4em;
+  }
+
+  /* 品牌 LOGO 區塊 */
+  .brand-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 0.6em;
+    flex-wrap: wrap;
+  }
+  .brand-logo-img {
+    height: 72px;
+    width: auto;
+    object-fit: contain;
+  }
+  .brand-text-col { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
+  .brand-en { font-size: .9rem; letter-spacing: .08em; color: #555; font-family: 'Noto Sans TC', sans-serif; }
+  .brand-cn { font-size: 1.8rem; font-weight: 900; letter-spacing: .2em; line-height: 1.2; }
+
+  .contact-name {
+    font-size: 2.4rem;
+    font-weight: 900;
+    letter-spacing: .3em;
+    margin-bottom: 0.8em;
+    margin-top: 0.2em;
+  }
+
+  /* 4個圖示 */
+  .contact-icons {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 1.4em;
+  }
+  .contact-icon-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border: 2px solid #333;
+    border-radius: 50%;
+    text-decoration: none;
+    color: #333;
+    font-size: 1.4rem;
+    transition: border-color .2s, color .2s;
+  }
+  .contact-icon-link:hover { border-color: #5ac75a; color: #5ac75a; }
+
+  /* SVG icons inline */
+  .icon-svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: .55em;
+    font-size: 1rem;
+    letter-spacing: .08em;
+    font-weight: 700;
+  }
   .contact-info a { color: #000; text-decoration: none; }
   .contact-info a:hover { text-decoration: underline; }
 
   /* divider */
-  hr.thin { border: none; border-top: 1px solid #ccc; margin: 0 auto; max-width: 900px; }
+  hr.thin { border: none; border-top: 1px solid #ccc; margin: 0; }
 
   /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
@@ -187,10 +304,11 @@
     .about-body, .drawing-body, .frame-body { grid-template-columns: 1fr; }
     .cnc-bullets { grid-template-columns: 1fr; }
     .cnc-grid { grid-template-columns: 1fr; }
-    .drawing-imgs { grid-template-columns: 1fr; }
-    .frame-imgs { grid-template-columns: 1fr; }
+    .drawing-imgs-row { grid-template-columns: 1fr 1fr; }
+    .frame-small-grid { grid-template-columns: 1fr 1fr; }
+    .frame-right img { aspect-ratio: 4/3; }
     .brand-block { flex-direction: column; }
-    .brand-text { text-align: center; }
+    .brand-text-col { align-items: center; }
   }
 </style>
 </head>
@@ -277,32 +395,32 @@
 
 <!-- ══════ 代客製圖、拆圖 ══════ -->
 <section class="drawing-section">
-  <div style="max-width:1200px;margin:0 auto;">
-    <div class="drawing-body">
-      <div class="drawing-text">
-        <h2 style="font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:900;letter-spacing:.12em;">代客製圖、拆圖</h2>
-        <div class="drawing-item">
-          <h3>專業製圖團隊，打造完美曲面</h3>
-          <p>3D模型建構、精細拆圖，為你的木工作品提供最堅實的基礎。</p>
-        </div>
-        <hr class="thin">
-        <div class="drawing-item">
-          <h3>雲端數位木作，引領木工新時代</h3>
-          <p>透過雲端平台，快速完成複雜圖面製作，讓你的設計更具競爭力。</p>
-        </div>
-        <hr class="thin">
-        <div class="drawing-item">
-          <h3>專業業務諮詢，快速估價</h3>
-          <p>從設計到生產一站式服務，專業業務諮詢，快速估價，讓你的木工專案更順利。</p>
-        </div>
+  <div class="drawing-body">
+    <!-- 左：文字欄 -->
+    <div class="drawing-text">
+      <h2>代客製圖、拆圖</h2>
+      <div class="drawing-item">
+        <h3>專業製圖團隊，打造完美曲面</h3>
+        <p>3D模型建構、精細拆圖，為你的木工作品提供最堅實的基礎。</p>
       </div>
-      <div>
-        <img src="https://i.ibb.co/dJxhbFDX/13.jpg" alt="3D拆圖" style="width:100%;border-radius:4px;margin-bottom:8px;">
-        <div class="drawing-imgs">
-          <img src="https://i.ibb.co/0jYPwQqL/14.jpg" alt="製圖1">
-          <img src="https://i.ibb.co/svyF4xv9/15.webp" alt="製圖2">
-          <img src="https://i.ibb.co/nMRG1pNv/16.jpg" alt="製圖3" class="wide">
-        </div>
+      <hr class="drawing-divider">
+      <div class="drawing-item">
+        <h3>雲端數位木作，引領木工新時代</h3>
+        <p>透過雲端平台，快速完成複雜圖面製作，讓你的設計更具競爭力。</p>
+      </div>
+      <hr class="drawing-divider">
+      <div class="drawing-item">
+        <h3>專業業務諮詢，快速估價</h3>
+        <p>從設計到生產一站式服務，專業業務諮詢，快速估價，讓你的木工專案更順利。</p>
+      </div>
+    </div>
+    <!-- 右：大圖 + 三小圖並排 -->
+    <div class="drawing-imgs-col">
+      <img class="main-img" src="https://i.ibb.co/dJxhbFDX/13.jpg" alt="3D骨架圖">
+      <div class="drawing-imgs-row">
+        <img src="https://i.ibb.co/0jYPwQqL/14.jpg" alt="製圖1">
+        <img src="https://i.ibb.co/svyF4xv9/15.webp" alt="製圖2">
+        <img src="https://i.ibb.co/nMRG1pNv/16.jpg" alt="製圖3" class="wide">
       </div>
     </div>
   </div>
@@ -310,28 +428,30 @@
 
 <!-- ══════ 骨架設計 ══════ -->
 <section class="frame-section">
-  <div style="max-width:1200px;margin:0 auto;">
-    <h2 style="font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:900;letter-spacing:.12em;margin-bottom:1em;">骨架設計</h2>
+  <div class="frame-inner">
+    <h2>骨架設計</h2>
     <div class="frame-body">
-      <div class="frame-text">
+      <!-- 左：文字 + 4小圖 -->
+      <div class="frame-left">
         <div class="frame-item">
           <h3>大師打造完美骨架</h3>
           <p>高精度、高效率，滿足您的各種需求。實時溝通、快速出圖，讓您的設計更具競爭力。</p>
         </div>
-        <hr class="thin">
+        <hr class="frame-divider">
         <div class="frame-item">
           <h3>曲面造型，不再是難題</h3>
           <p>骨架設計，CNC精製。從設計到成品，一站式搞定！您的木工專家。從設計到生產，全程為您服務。</p>
         </div>
-        <div class="frame-imgs" style="margin-top:16px;">
+        <div class="frame-small-grid">
           <img src="https://i.ibb.co/sdZhxPN0/17.jpg" alt="骨架1">
           <img src="https://i.ibb.co/HDcyRPGc/18.jpg" alt="骨架2">
           <img src="https://i.ibb.co/8n3CSBsC/19.jpg" alt="骨架3">
           <img src="https://i.ibb.co/zHQGc51y/20.png" alt="骨架4">
         </div>
       </div>
-      <div>
-        <img src="https://i.ibb.co/bj5pKh5j/21.jpg" alt="骨架主圖" style="width:100%;border-radius:4px;object-fit:cover;">
+      <!-- 右：大主圖（直向） -->
+      <div class="frame-right">
+        <img src="https://i.ibb.co/bj5pKh5j/21.jpg" alt="骨架主圖">
       </div>
     </div>
   </div>
@@ -341,20 +461,62 @@
 <section class="contact-section">
   <div class="contact-overlay"></div>
   <div class="contact-inner">
-    <h2>快來試試更有效率的數位加工！</h2>
+
+    <!-- 品牌區塊：LOGO + 中英文名稱 -->
     <div class="brand-block">
-      <div class="brand-text">
-        <div class="en">Far East Digit Wood Work</div>
-        <div class="cn">極東數位木作</div>
+      <img
+        class="brand-logo-img"
+        src="https://i.ibb.co/0j8G9Kp/logo.png"
+        alt="極東數位木作 LOGO"
+        onerror="this.style.display='none'"
+      >
+      <div class="brand-text-col">
+        <span class="brand-en">Far East Digit Wood Work</span>
+        <span class="brand-cn">極東數位木作</span>
       </div>
     </div>
+
+    <!-- 聯絡人姓名 -->
     <div class="contact-name">郭懋鵬</div>
+
+    <!-- 4個圓形圖示 -->
     <div class="contact-icons">
-      <a href="tel:0908-236-090" title="電話">📞</a>
-      <a href="https://line.me/ti/p/QdtaXIETEr" title="LINE" target="_blank">💬</a>
-      <a href="https://g.co/kgs/ZiiW6ZG" title="地址" target="_blank">📍</a>
-      <a href="mailto:a0908286090@gmail.com" title="Email">✉️</a>
+      <!-- 電話 -->
+      <a class="contact-icon-link" href="tel:0908-236-090" title="電話">
+        <svg class="icon-svg" viewBox="0 0 24 24">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.32 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+      </a>
+      <!-- LINE -->
+      <a class="contact-icon-link" href="https://line.me/ti/p/QdtaXIETEr" title="LINE" target="_blank">
+        <svg class="icon-svg" viewBox="0 0 24 24">
+          <path d="M21 11.5C21 7.36 16.99 4 12 4S3 7.36 3 11.5c0 3.69 3.27 6.79 7.7 7.38.3.07.71.2.81.45.09.23.06.59.03.82l-.13.79c-.04.23-.19.91.8.5 1-.42 5.36-3.16 7.31-5.41C20.35 14.5 21 13.07 21 11.5z"/>
+          <line x1="8" y1="11" x2="8" y2="14" stroke-width="1.6"/>
+          <line x1="16" y1="11" x2="16" y2="14" stroke-width="1.6"/>
+          <line x1="8" y1="11" x2="16" y2="11" stroke-width="1.6"/>
+          <line x1="8" y1="14" x2="16" y2="14" stroke-width="1.6"/>
+        </svg>
+      </a>
+      <!-- 地址 -->
+      <a class="contact-icon-link" href="https://g.co/kgs/ZiiW6ZG" title="地址" target="_blank">
+        <svg class="icon-svg" viewBox="0 0 24 24">
+          <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+      </a>
+      <!-- Email -->
+      <a class="contact-icon-link" href="mailto:a0908286090@gmail.com" title="Email">
+        <svg class="icon-svg" viewBox="0 0 24 24">
+          <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <polyline points="2,4 12,13 22,4"/>
+        </svg>
+      </a>
     </div>
+
+    <!-- 呼籲文字 -->
+    <p class="cta-title">快來試試更有效率的數位加工！</p>
+
+    <!-- 聯絡資訊 -->
     <div class="contact-info">
       <span>手機：<a href="tel:0908-236-090">0908-236-090</a></span>
       <span>Line ID：0908236090</span>
@@ -363,6 +525,7 @@
       <span>Gmail：<a href="mailto:a0908286090@gmail.com">a0908286090@gmail.com</a></span>
       <span>地址：新北市樹林區西圳街一段116巷8號</span>
     </div>
+
   </div>
 </section>
 
