@@ -243,33 +243,23 @@
     background: rgba(255,255,255,.55);
   }
   .contact-inner { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
-  .contact-inner > .cta-title {
-    font-size: clamp(1.4rem, 3vw, 2rem);
-    font-weight: 900;
-    letter-spacing: .15em;
-    margin-bottom: 1.4em;
-  }
 
-  /* 品牌 LOGO 區塊 */
+  /* 品牌區塊已拿掉 LOGO 圖片，並稍微縮小文字字體 */
   .brand-block {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 16px;
-    margin-bottom: 0.6em;
+    margin-bottom: 0.4em;
     flex-wrap: wrap;
   }
-  .brand-logo-img {
-    height: 72px;
-    width: auto;
-    object-fit: contain;
-  }
-  .brand-text-col { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
-  .brand-en { font-size: .9rem; letter-spacing: .08em; color: #555; font-family: 'Noto Sans TC', sans-serif; }
-  .brand-cn { font-size: 1.8rem; font-weight: 900; letter-spacing: .2em; line-height: 1.2; }
+  .brand-text-col { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+  .brand-en { font-size: .85rem; letter-spacing: .08em; color: #555; font-family: 'Noto Sans TC', sans-serif; }
+  .brand-cn { font-size: 1.5rem; font-weight: 900; letter-spacing: .2em; line-height: 1.2; }
 
+  /* 調整名字的字體大小，使其稍微小一點點點 */
   .contact-name {
-    font-size: 2.4rem;
+    font-size: 2rem;
     font-weight: 900;
     letter-spacing: .3em;
     margin-bottom: 0.8em;
@@ -342,7 +332,6 @@
       快速交貨 ｜ 品質保證 ｜ 價格實惠
     </p>
     <a class="btn-line" href="https://line.me/ti/p/QdtaXIETEr" target="_blank">加 LINE 聊聊</a><br>
-    <!-- 已成功將連結修改為您的雲端網址，並設定 target="_blank" 以新分頁開啟 -->
     <a class="btn-works" href="https://drive.google.com/drive/u/2/folders/1AJZHjZQTYRXQD5nKeLKPcEDHFdTSfn3w" target="_blank">查看更多作品</a>
   </div>
 </section>
@@ -394,7 +383,7 @@
       </div>
       <div class="cnc-bullet">
         <h3>專業團隊，貼心服務</h3>
-        <p>擁有專業的設計師和工程師，能為您提供全程的技術支持和售後服務。</p>
+        <p>擁有專業的設計師 and 工程師，能為您提供全程的技術支持和售後服務。</p>
       </div>
     </div>
   </div>
@@ -481,21 +470,15 @@
   <div class="contact-overlay"></div>
   <div class="contact-inner">
 
-    <!-- 品牌區塊：LOGO + 中英文名稱 -->
+    <!-- 品牌區塊：已拿掉失效的藍色 LOGO 圖片 -->
     <div class="brand-block">
-      <img
-        class="brand-logo-img"
-        src="https://i.ibb.co/0j8G9Kp/logo.png"
-        alt="極東數位木作 LOGO"
-        onerror="this.style.display='none'"
-      >
       <div class="brand-text-col">
         <span class="brand-en">Far East Digit Wood Work</span>
         <span class="brand-cn">極東數位木作</span>
       </div>
     </div>
 
-    <!-- 聯絡人姓名 -->
+    <!-- 聯絡人姓名（已調小字體） -->
     <div class="contact-name">郭懋鵬</div>
 
     <!-- 4個圓形圖示 -->
@@ -531,9 +514,6 @@
         </svg>
       </a>
     </div>
-
-    <!-- 呼籲文字 -->
-    <p class="cta-title">快來試試更有效率的數位加工！</p>
 
     <!-- 聯絡資訊 -->
     <div class="contact-info">
