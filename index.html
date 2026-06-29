@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Noto Serif TC', 'Noto Sans TC', serif; background: #fff; color: #000; overflow-x: hidden; }
+  body { font-family: 'Noto Serif TC', 'Noto Sans TC', serif; background: #fff; color: #000; overflow-x: hidden; scroll-behavior: smooth; }
 
   /* ── HERO ── */
   .hero {
@@ -58,8 +58,25 @@
     text-decoration: none;
     box-shadow: 0 4px 16px rgba(0,0,0,.25);
     transition: background .2s;
+    margin-bottom: 12px; /* 增加下方間距，與新按鈕錯開 */
   }
   .btn-line:hover { background: #3ea83e; }
+
+  /* 新增的藍色作品按鈕樣式 */
+  .btn-works {
+    display: inline-block;
+    padding: .65em 2.2em;
+    border-radius: 2em;
+    background: #0066cc;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: .18em;
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(0,0,0,.25);
+    transition: background .2s;
+  }
+  .btn-works:hover { background: #004999; }
 
   /* ── SECTIONS generic ── */
   section { width: 100%; padding: 72px 40px; }
@@ -324,7 +341,9 @@
       專業團隊，先進設備<br>
       快速交貨 ｜ 品質保證 ｜ 價格實惠
     </p>
-    <a class="btn-line" href="https://line.me/ti/p/QdtaXIETEr" target="_blank">加 LINE 聊聊</a>
+    <a class="btn-line" href="https://line.me/ti/p/QdtaXIETEr" target="_blank">加 LINE 聊聊</a><br>
+    <!-- 這裡新增了查看更多作品按鈕 -->
+    <a class="btn-works" href="#cnc-works">查看更多作品</a>
   </div>
 </section>
 
@@ -361,7 +380,8 @@
 </section>
 
 <!-- ══════ CNC 切割 ══════ -->
-<section class="cnc-section">
+<!-- 這裡加上了 id="cnc-works" 以便點擊上方按鈕時直接跳轉到這裡 -->
+<section class="cnc-section" id="cnc-works">
   <div class="cnc-header">
     <h2>CNC切割</h2>
     <div class="cnc-bullets">
