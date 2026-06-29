@@ -1,53 +1,370 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>極東數位木作工程</title>
-    <style>
-        /* 消除瀏覽器預設邊距，並讓網頁滿版 */
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background-color: #ffffff;
-        }
-        
-        /* 滿版容器設定 */
-        .web-container {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-        }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>極東數位木作工程</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Noto Serif TC', 'Noto Sans TC', serif; background: #fff; color: #000; overflow-x: hidden; }
 
-        /* 讓 Canva 的 iframe 完美填滿螢幕 */
-        .web-container iframe {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            border: none;
-            padding: 0;
-            margin: 0;
-        }
-    </style>
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 560px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: url('https://i.ibb.co/R4TNFRPJ/01.png') center/cover no-repeat;
+    filter: brightness(0.65);
+  }
+  .hero-content { position: relative; z-index: 1; padding: 0 20px; }
+  .hero h1 {
+    font-size: clamp(2.4rem, 6vw, 5rem);
+    font-weight: 900;
+    letter-spacing: .25em;
+    color: #fff;
+    text-shadow: 2px 2px 8px rgba(0,0,0,.45);
+    margin-bottom: .5em;
+  }
+  .hero p {
+    font-size: clamp(1rem, 2.2vw, 1.5rem);
+    font-weight: 700;
+    letter-spacing: .18em;
+    color: #fff;
+    text-shadow: 1px 1px 6px rgba(0,0,0,.5);
+    line-height: 1.9;
+    margin-bottom: 1.8em;
+  }
+  .btn-line {
+    display: inline-block;
+    padding: .65em 2.2em;
+    border-radius: 2em;
+    background: #5ac75a;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: .18em;
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(0,0,0,.25);
+    transition: background .2s;
+  }
+  .btn-line:hover { background: #3ea83e; }
+
+  /* ── SECTIONS generic ── */
+  section { width: 100%; padding: 72px 40px; }
+  .section-title {
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 900;
+    letter-spacing: .15em;
+    text-align: center;
+    margin-bottom: 1.6em;
+  }
+
+  /* ── ABOUT (數位木作服務一條龍) ── */
+  .about { background: #fff; }
+  .about-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px 56px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: start;
+  }
+  .about-text { display: flex; flex-direction: column; gap: 36px; }
+  .about-intro {
+    font-size: 1rem;
+    line-height: 1.9;
+    letter-spacing: .05em;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  .about-item h3 {
+    font-size: 1.1rem;
+    font-weight: 900;
+    letter-spacing: .12em;
+    margin-bottom: .4em;
+    border-bottom: 1px solid #bbb;
+    padding-bottom: .3em;
+  }
+  .about-item p { font-size: .95rem; line-height: 1.85; letter-spacing: .06em; color: #444; }
+  .about-img { border-radius: 4px; overflow: hidden; }
+  .about-img img { width: 100%; height: 100%; object-fit: cover; border-radius: 4px; }
+
+  /* ── CNC 切割 ── */
+  .cnc-section { background: #fff; }
+  .cnc-header {
+    max-width: 1200px; margin: 0 auto 40px;
+  }
+  .cnc-header h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 900; letter-spacing: .12em; margin-bottom: 1em; }
+  .cnc-bullets { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 48px; margin-bottom: 40px; }
+  .cnc-bullet h3 { font-size: 1.05rem; font-weight: 900; letter-spacing: .1em; margin-bottom: .35em; }
+  .cnc-bullet p { font-size: .9rem; line-height: 1.85; color: #444; letter-spacing: .05em; }
+  .cnc-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .cnc-grid img {
+    width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 3px;
+    display: block;
+  }
+  .cnc-grid img.tall { aspect-ratio: 3/4; }
+
+  /* ── 代客製圖 ── */
+  .drawing-section { background: #fff; }
+  .drawing-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px 56px;
+    max-width: 1200px; margin: 0 auto;
+    align-items: start;
+  }
+  .drawing-text { display: flex; flex-direction: column; gap: 32px; }
+  .drawing-item h3 { font-size: 1.05rem; font-weight: 900; letter-spacing: .1em; margin-bottom: .35em; border-bottom: 1px solid #ccc; padding-bottom: .3em; }
+  .drawing-item p { font-size: .9rem; line-height: 1.85; color: #444; letter-spacing: .05em; }
+  .drawing-imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .drawing-imgs img { width: 100%; object-fit: cover; border-radius: 3px; }
+  .drawing-imgs .wide { grid-column: 1 / -1; }
+
+  /* ── 骨架設計 ── */
+  .frame-section { background: #fff; }
+  .frame-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px 56px;
+    max-width: 1200px; margin: 0 auto;
+    align-items: start;
+  }
+  .frame-text { display: flex; flex-direction: column; gap: 32px; }
+  .frame-item h3 { font-size: 1.05rem; font-weight: 900; letter-spacing: .1em; margin-bottom: .35em; }
+  .frame-item p { font-size: .9rem; line-height: 1.85; color: #444; letter-spacing: .05em; }
+  .frame-imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .frame-imgs img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 3px; }
+
+  /* ── 聯絡 ── */
+  .contact-section {
+    position: relative;
+    background: url('https://i.ibb.co/R4TNFRPJ/01.png') center/cover no-repeat;
+    padding: 80px 40px;
+    text-align: center;
+  }
+  .contact-overlay {
+    position: absolute; inset: 0;
+    background: rgba(255,255,255,.55);
+  }
+  .contact-inner { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+  .contact-inner h2 { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 900; letter-spacing: .15em; margin-bottom: .8em; }
+  .brand-block { display: flex; align-items: center; justify-content: center; gap: 24px; margin-bottom: 1.2em; flex-wrap: wrap; }
+  .brand-block img { height: 80px; }
+  .brand-text { text-align: left; }
+  .brand-text .en { font-size: .9rem; letter-spacing: .08em; color: #555; }
+  .brand-text .cn { font-size: 1.6rem; font-weight: 900; letter-spacing: .18em; }
+  .contact-name { font-size: 1.8rem; font-weight: 900; letter-spacing: .2em; margin-bottom: 1.2em; }
+  .contact-icons { display: flex; justify-content: center; gap: 28px; margin-bottom: 1.6em; font-size: 1.6rem; }
+  .contact-icons a { text-decoration: none; color: #333; transition: color .2s; }
+  .contact-icons a:hover { color: #5ac75a; }
+  .contact-info { display: flex; flex-direction: column; gap: .5em; font-size: 1rem; letter-spacing: .06em; font-weight: 700; }
+  .contact-info a { color: #000; text-decoration: none; }
+  .contact-info a:hover { text-decoration: underline; }
+
+  /* divider */
+  hr.thin { border: none; border-top: 1px solid #ccc; margin: 0 auto; max-width: 900px; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    section { padding: 48px 20px; }
+    .about-body, .drawing-body, .frame-body { grid-template-columns: 1fr; }
+    .cnc-bullets { grid-template-columns: 1fr; }
+    .cnc-grid { grid-template-columns: 1fr; }
+    .drawing-imgs { grid-template-columns: 1fr; }
+    .frame-imgs { grid-template-columns: 1fr; }
+    .brand-block { flex-direction: column; }
+    .brand-text { text-align: center; }
+  }
+</style>
 </head>
 <body>
 
-    <div class="web-container">
-    <div style="position: relative; width: 100%; height: 0; padding-top: 56.9546%;
- padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
- border-radius: 8px; will-change: transform;">
-  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
-    src="https://www.canva.com/design/DAG1NvtvP0I/hbxcBOCJwems-0X9je60iA/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
-  </iframe>
-</div>
-MakabaCard 設計的 <a href="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAG1NvtvP0I&#x2F;hbxcBOCJwems-0X9je60iA&#x2F;view?utm_content=DAG1NvtvP0I&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">極東數位木作工程</a>
-        <iframe loading="lazy" src="https://www.canva.com/design/DAG1NvtvP0I/hbxcBOCJwems-0X9je60iA/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen"></iframe>
+<!-- ══════ HERO ══════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <h1>極東數位木作工程</h1>
+    <p>
+      您的造型我來實現<br>
+      專業團隊，先進設備<br>
+      快速交貨 ｜ 品質保證 ｜ 價格實惠
+    </p>
+    <a class="btn-line" href="https://line.me/ti/p/QdtaXIETEr" target="_blank">加 LINE 聊聊</a>
+  </div>
+</section>
+
+<!-- ══════ 數位木作服務一條龍 ══════ -->
+<section class="about">
+  <h2 class="section-title">數位木作服務一條龍</h2>
+  <div class="about-body">
+    <div class="about-text">
+      <p class="about-intro">透過數位木作雲端中心即可進行拆圖、製圖到骨架切割服務一條龍服務，有效和快速地協助全台各地的優秀木工團隊進行各式曲面、特殊造型製作。</p>
+      <div class="about-item">
+        <h3>雲端諮詢</h3>
+        <p>將您的想法或設計圖面傳送給我們，業務專員將與您討論並提供即時估價</p>
+      </div>
+      <hr class="thin">
+      <div class="about-item">
+        <h3>圖面製作</h3>
+        <p>我們有專業的製圖團隊可以為您提供圖面製作、<em>3D</em>模型製圖及拆圖</p>
+      </div>
+      <hr class="thin">
+      <div class="about-item">
+        <h3>CNC 加工</h3>
+        <p>經排版製圖好的物件檔案即可上機進行加工</p>
+      </div>
+      <hr class="thin">
+      <div class="about-item">
+        <h3>快速交貨</h3>
+        <p>廠內設有多組CNC加工機，可多條產線同時運作，為您提供最快速的加工服務。</p>
+      </div>
     </div>
+    <div class="about-img">
+      <img src="https://i.ibb.co/sv2jJXWZ/02.jpg" alt="數位木作空間">
+    </div>
+  </div>
+</section>
+
+<!-- ══════ CNC 切割 ══════ -->
+<section class="cnc-section">
+  <div class="cnc-header">
+    <h2>CNC切割</h2>
+    <div class="cnc-bullets">
+      <div class="cnc-bullet">
+        <h3>20年數位木作經驗，值得信賴</h3>
+        <p>CNC切割專家，累積了豐富的技術與經驗，能為您節省75%製作時間。</p>
+      </div>
+      <div class="cnc-bullet">
+        <h3>先進設備，精準切割</h3>
+        <p>快速切割，不留黑邊，完美呈現木質紋理，讓您的作品更有溫度。</p>
+      </div>
+      <div class="cnc-bullet">
+        <h3>專業團隊，貼心服務</h3>
+        <p>擁有專業的設計師和工程師，能為您提供全程的技術支持和售後服務。</p>
+      </div>
+    </div>
+  </div>
+  <div class="cnc-grid">
+    <img src="https://i.ibb.co/CpNb2439/04.jpg" alt="CNC作品1">
+    <img src="https://i.ibb.co/VYy0ZScy/03.jpg" alt="CNC作品2">
+    <img src="https://i.ibb.co/pvn9ZtPT/05.png" alt="CNC作品3">
+    <img src="https://i.ibb.co/7x8CnCHB/06.jpg" alt="CNC作品4">
+    <img src="https://i.ibb.co/0jP1qJmS/07.jpg" alt="CNC作品5">
+    <img src="https://i.ibb.co/5Xb65TW8/08.jpg" alt="CNC作品6">
+    <img src="https://i.ibb.co/sdytdLGq/09.jpg" alt="CNC作品7">
+    <img src="https://i.ibb.co/Z6F0jQ3P/10.jpg" alt="CNC作品8">
+    <img src="https://i.ibb.co/NnGm9Sns/11.jpg" alt="CNC作品9">
+    <img src="https://i.ibb.co/dJbMk1yF/12.jpg" alt="CNC作品10">
+  </div>
+</section>
+
+<!-- ══════ 代客製圖、拆圖 ══════ -->
+<section class="drawing-section">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="drawing-body">
+      <div class="drawing-text">
+        <h2 style="font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:900;letter-spacing:.12em;">代客製圖、拆圖</h2>
+        <div class="drawing-item">
+          <h3>專業製圖團隊，打造完美曲面</h3>
+          <p>3D模型建構、精細拆圖，為你的木工作品提供最堅實的基礎。</p>
+        </div>
+        <hr class="thin">
+        <div class="drawing-item">
+          <h3>雲端數位木作，引領木工新時代</h3>
+          <p>透過雲端平台，快速完成複雜圖面製作，讓你的設計更具競爭力。</p>
+        </div>
+        <hr class="thin">
+        <div class="drawing-item">
+          <h3>專業業務諮詢，快速估價</h3>
+          <p>從設計到生產一站式服務，專業業務諮詢，快速估價，讓你的木工專案更順利。</p>
+        </div>
+      </div>
+      <div>
+        <img src="https://i.ibb.co/dJxhbFDX/13.jpg" alt="3D拆圖" style="width:100%;border-radius:4px;margin-bottom:8px;">
+        <div class="drawing-imgs">
+          <img src="https://i.ibb.co/0jYPwQqL/14.jpg" alt="製圖1">
+          <img src="https://i.ibb.co/svyF4xv9/15.webp" alt="製圖2">
+          <img src="https://i.ibb.co/nMRG1pNv/16.jpg" alt="製圖3" class="wide">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ 骨架設計 ══════ -->
+<section class="frame-section">
+  <div style="max-width:1200px;margin:0 auto;">
+    <h2 style="font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:900;letter-spacing:.12em;margin-bottom:1em;">骨架設計</h2>
+    <div class="frame-body">
+      <div class="frame-text">
+        <div class="frame-item">
+          <h3>大師打造完美骨架</h3>
+          <p>高精度、高效率，滿足您的各種需求。實時溝通、快速出圖，讓您的設計更具競爭力。</p>
+        </div>
+        <hr class="thin">
+        <div class="frame-item">
+          <h3>曲面造型，不再是難題</h3>
+          <p>骨架設計，CNC精製。從設計到成品，一站式搞定！您的木工專家。從設計到生產，全程為您服務。</p>
+        </div>
+        <div class="frame-imgs" style="margin-top:16px;">
+          <img src="https://i.ibb.co/sdZhxPN0/17.jpg" alt="骨架1">
+          <img src="https://i.ibb.co/HDcyRPGc/18.jpg" alt="骨架2">
+          <img src="https://i.ibb.co/8n3CSBsC/19.jpg" alt="骨架3">
+          <img src="https://i.ibb.co/zHQGc51y/20.png" alt="骨架4">
+        </div>
+      </div>
+      <div>
+        <img src="https://i.ibb.co/bj5pKh5j/21.jpg" alt="骨架主圖" style="width:100%;border-radius:4px;object-fit:cover;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ 聯絡我們 ══════ -->
+<section class="contact-section">
+  <div class="contact-overlay"></div>
+  <div class="contact-inner">
+    <h2>快來試試更有效率的數位加工！</h2>
+    <div class="brand-block">
+      <div class="brand-text">
+        <div class="en">Far East Digit Wood Work</div>
+        <div class="cn">極東數位木作</div>
+      </div>
+    </div>
+    <div class="contact-name">郭懋鵬</div>
+    <div class="contact-icons">
+      <a href="tel:0908-236-090" title="電話">📞</a>
+      <a href="https://line.me/ti/p/QdtaXIETEr" title="LINE" target="_blank">💬</a>
+      <a href="https://g.co/kgs/ZiiW6ZG" title="地址" target="_blank">📍</a>
+      <a href="mailto:a0908286090@gmail.com" title="Email">✉️</a>
+    </div>
+    <div class="contact-info">
+      <span>手機：<a href="tel:0908-236-090">0908-236-090</a></span>
+      <span>Line ID：0908236090</span>
+      <span>電話：<a href="tel:0226683290">(02)2668-3290</a></span>
+      <span>傳真：(02)2668-3296</span>
+      <span>Gmail：<a href="mailto:a0908286090@gmail.com">a0908286090@gmail.com</a></span>
+      <span>地址：新北市樹林區西圳街一段116巷8號</span>
+    </div>
+  </div>
+</section>
 
 </body>
 </html>
